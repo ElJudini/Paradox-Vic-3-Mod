@@ -7,5 +7,14 @@ NAI = { #lucca
 	DIPLO_PLAY_BACK_DOWN_CHANCE_HIGH_ESCALATION = 0 #0.1→0 1.0 = 1% (chance each tick) - used after countdown to war starts
 	DIPLO_PLAY_BACK_DOWN_CHANCE_WAR_LOSSES_MULT = 0 #0.5→0 Multiply chance of backing down due to additional wargoal demands ( 1 + this * relative impact of additional wargoals )
 	DIPLO_PLAY_BACK_DOWN_CHANCE_WAR_LOSSES_MAX = 0 #3→0 Max multiplier for impact of additional wargoal demands (including the base of 1)
-	
+
+	DIPLO_PLAY_SWAY_THRESHOLD = 0.5 #2→0.5 If AI has this much military strength compared to enemy, don't bother trying to sway anyone	
+	DIPLO_PLAY_DECIDE_ON_SUPPORT_ESCALATION = 65 #30→65 Above this escalation, AI will potentially start taking sides (or declare neutrality) even if not swayed
+        DIPLO_PLAY_TAKE_SIDES_MIN_BOLDNESS = 100 #50→100 Boldness must be at least this for AI to want to take a side with no gain
+	DIPLO_PLAY_WEAK_ABANDON_SUPPORT_THRESHOLD = -15 # If support for the side an AI country is backing drops below this, consider abandoning it
+	DIPLO_PLAY_STRONG_ABANDON_SUPPORT_THRESHOLD = -25 # If support for the side an AI country is backing drops below this, abandon it immediately
+	DIPLO_PLAY_ABANDON_ALLY_RELUCTANCE = 50 #25→50 Added to support score when considering whether to abandon an ally
+	DIPLO_PLAY_ABANDON_SUBJECT_RELUCTANCE = 75 #50→75 Added to support score when considering whether to abandon a subject
+
+
 }
