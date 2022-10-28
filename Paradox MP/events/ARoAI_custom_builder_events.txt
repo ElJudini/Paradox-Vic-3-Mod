@@ -3,7 +3,7 @@ namespace = ARoAI_custom_builder_events
 # On Action Event
 ARoAI_custom_builder_events.1 = {
 	type = country_event
-	hidden = no
+	hidden = yes
 
 	trigger = {
 		exists = this
