@@ -1,0 +1,11 @@
+NAI = { #lucca
+        DIPLO_PLAY_BACK_DOWN_CHANCE_THRESHOLD = -100 # If ( confidence + boldness ) is less than this, consider backing down 
+	DIPLO_PLAY_BACK_DOWN_CHANCE_ESCALATION = 100 # Above this escalation, AI will consider backing down
+	DIPLO_PLAY_BACK_DOWN_GUARANTEED_THRESHOLD = -100 #-25→-100 If ( confidence + boldness ) is less than this, always back down before the play goes to war
+	DIPLO_PLAY_BACK_DOWN_GUARANTEED_ESCALATION = 100 # Above this escalation, AI will always back down if it's supposed to
+	DIPLO_PLAY_BACK_DOWN_CHANCE_LOW_ESCALATION = 0 #0.1→0 1.0 = 1% (chance each tick) - used before countdown to war starts
+	DIPLO_PLAY_BACK_DOWN_CHANCE_HIGH_ESCALATION = 0 #0.1→0 1.0 = 1% (chance each tick) - used after countdown to war starts
+	DIPLO_PLAY_BACK_DOWN_CHANCE_WAR_LOSSES_MULT = 0 #0.5→0 Multiply chance of backing down due to additional wargoal demands ( 1 + this * relative impact of additional wargoals )
+	DIPLO_PLAY_BACK_DOWN_CHANCE_WAR_LOSSES_MAX = 0 #3→0 Max multiplier for impact of additional wargoal demands (including the base of 1)
+	
+}
