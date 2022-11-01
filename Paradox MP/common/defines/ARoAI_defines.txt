@@ -1,10 +1,16 @@
 ﻿NAI = {
-	RAISE_TAX_TO_DESIRED_INCOME_THRESHOLD = 1.25
-	RAISE_TAX_ABOVE_DESIRED_INCOME_NO_DEBT_THRESHOLD = 0.9
-	RAISE_TAX_ABOVE_DESIRED_INCOME_WITH_DEBT_THRESHOLD = 1.1
-	LOWER_TAX_TO_DESIRED_INCOME_THRESHOLD = 1.5
-	LOWER_TAX_BELOW_DESIRED_INCOME_THRESHOLD = 2.0
-	RAISE_TAX_HIGH_DEBT_OVERRIDE_RATIO = 0.2 # At this amount of debt, any level of tax is OK to deal with it
+	BASE_AGGRESSION = 0.5 # Base chance that AI will consider starting a diplo play each time the goal is checked (1 = 1%)
+	UNIFICATION_AGGRESSION_MULT_HIGHER_TIER = 20 # AI aggression is multiplied by this for calculating whether they should try to start a unification/leadership play, if the country would end up forming a nation of a higher tier
+	UNIFICATION_AGGRESSION_MULT_SAME_TIER = 0.1 # AI aggression is multiplied by this for calculating whether they should try to start a unification/leadership play, if the country would end up forming a nation of the same tier
+	
+	CONSCRIPTION_ESTIMATED_MILITARY_POWER_MULT = 0.75 		# AI multiplies the value of conscriptable battalions by this to estimate potential combat power
+	
+	RAISE_TAX_TO_DESIRED_INCOME_THRESHOLD = 0.03
+	RAISE_TAX_ABOVE_DESIRED_INCOME_NO_DEBT_THRESHOLD = 0.01
+	RAISE_TAX_ABOVE_DESIRED_INCOME_WITH_DEBT_THRESHOLD = 0.02
+	LOWER_TAX_TO_DESIRED_INCOME_THRESHOLD = 0.04
+	LOWER_TAX_BELOW_DESIRED_INCOME_THRESHOLD = 666.6
+	RAISE_TAX_HIGH_DEBT_OVERRIDE_RATIO = 0.01 # At this amount of debt, any level of tax is OK to deal with it
 	
 	CONSTRUCTION_MAX_NUM_NON_GOVERNMENT_CONSTRUCTIONS_BASE = 1 # If country has this number of non-government building constructions queued, don't add anymore (base)
 	CONSTRUCTION_MAX_NUM_NON_GOVERNMENT_CONSTRUCTIONS_SCALED = 0.01 # If country has this number of non-government building constructions queued, don't add anymore (scaled by construction production)
@@ -14,10 +20,10 @@
 	CONSTRUCTION_MAX_NUM_GOVERNMENT_CONSTRUCTIONS_SCALED_MAX = 0.01 # CONSTRUCTION_MAX_NUM_GOVERNMENT_CONSTRUCTIONS_SCALED can't be higher than this	
 	#CONSTRUCTION_WANTED_SUPPLY_OF_CONSTRUCTION_GOODS = 1.0 # Try to import construction goods if supply-to-demand ratio is below this
 	CONSTRUCTION_RESERVES_NEW_CONSTRUCTIONS = 666.6 # If gold reserves are less than this after adding the cost of a new construction, don't queue it
-	CONSTRUCTION_DEBT_RESUME = 0.60 # If constructions are paused, resume once debt is this low relative to ceiling
-	CONSTRUCTION_DEBT_PAUSE = 0.65 # If in this much relative debt to debt ceiling, pause all non-critical constructions 	
-	CONSTRUCTION_DEBT_RESUME_CRITICAL_CONSTRUCTION = 0.60 # If critical constructions are paused, resume once debt is this low relative to ceiling
-	CONSTRUCTION_DEBT_PAUSE_CRITICAL_CONSTRUCTION = 0.65 # If in this much relative debt to debt ceiling, pause all critical constructions 	
+	CONSTRUCTION_DEBT_RESUME = 0.50 # If constructions are paused, resume once debt is this low relative to ceiling
+	CONSTRUCTION_DEBT_PAUSE = 0.55 # If in this much relative debt to debt ceiling, pause all non-critical constructions 	
+	CONSTRUCTION_DEBT_RESUME_CRITICAL_CONSTRUCTION = 0.50 # If critical constructions are paused, resume once debt is this low relative to ceiling
+	CONSTRUCTION_DEBT_PAUSE_CRITICAL_CONSTRUCTION = 6.66 # If in this much relative debt to debt ceiling, pause all critical constructions 	
 	
 	# Below data is used to calculate how much weight the AI places on different things it can spend its weekly money income on
 	MONEY_SPENDING_RANDOM_FACTOR = 2.0 # The higher this is, the more random new AI money spending will be
@@ -65,11 +71,15 @@
 	SUPPRESSION_BASE_VALUE = 0
 	
 	# Below data is used to calculate how much weight the AI places on consumption taxes 
-	CONSUMPTION_TAX_INCOME_VALUE = 10 # Per percent of state expenses in taxable value (this is then multiplied by relative authority cost of the good)
-	CONSUMPTION_TAX_STAPLE_MULT = 0.5 # Multiply desire to tax staple goods by this
-	CONSUMPTION_TAX_LUXURY_MULT = 2.0 # Multiply desire to tax luxury goods by this
-	CONSUMPTION_TAX_LOW_INCOME_THRESHOLD = 1.25 # Income-to-expenses threshold below which consumption taxes are a must-have
-	CONSUMPTION_TAX_HIGH_INCOME_THRESHOLD = 1.5 # Income-to-expenses threshold at which consumption taxes should be removed (if removal would not put us below this)
-	CONSUMPTION_TAX_MAX_NUM_TAXED_GOODS_BASE = 4 # Base max number of goods AI wants to tax
-	CONSUMPTION_TAX_MAX_NUM_TAXED_GOODS_PER_MISSING_TAX_TYPE = 2 # Added to max number of goods AI wants to tax for each other type of tax it does not collect
+	#CONSUMPTION_TAX_INCOME_VALUE = 10 # Per percent of state expenses in taxable value (this is then multiplied by relative authority cost of the good)
+	#CONSUMPTION_TAX_STAPLE_MULT = 0.5 # Multiply desire to tax staple goods by this
+	#CONSUMPTION_TAX_LUXURY_MULT = 2.0 # Multiply desire to tax luxury goods by this
+	#CONSUMPTION_TAX_LOW_INCOME_THRESHOLD = 1.25 # Income-to-expenses threshold below which consumption taxes are a must-have
+	#CONSUMPTION_TAX_HIGH_INCOME_THRESHOLD = 1.5 # Income-to-expenses threshold at which consumption taxes should be removed (if removal would not put us below this)
+	#CONSUMPTION_TAX_MAX_NUM_TAXED_GOODS_BASE = 4 # Base max number of goods AI wants to tax
+	#CONSUMPTION_TAX_MAX_NUM_TAXED_GOODS_PER_MISSING_TAX_TYPE = 2 # Added to max number of goods AI wants to tax for each other type of tax it does not collect
+	
+	PRODUCTION_BUILDING_OUTPUT_NEEDED_INDUSTRIAL_GOODS_FACTOR = 0.5 # Add this value to a building for each unit of money worth of industrial goods that are underproduced in the country and are used by buildings
+	
+	HQ_DEFENSE_MIN_WANTED_GARRISON = 0.00						# Keep at least this number of local troops to garrison important HQs against enemy invasio
 }
