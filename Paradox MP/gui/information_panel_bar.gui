@@ -86,7 +86,7 @@ types information_panel_bar_types {
 		### SIDEBAR BACKGROUND
 		icon = {
 			texture = "gfx/interface/main_hud/sidebar_bg.dds"
-			size = { 50 670 }
+			size = { 50 620 }
 			position = { 0 -17 }
 
 			using = hud_shiny_effect
@@ -656,7 +656,7 @@ types information_panel_bar_types {
 
 				sidebar_label_text_small = {
 					position = { -100 @spreadsheet_position }
-					using = fontsize_small
+					# using = fontsize_small
 					text = "MS_BTN"
 				}
 

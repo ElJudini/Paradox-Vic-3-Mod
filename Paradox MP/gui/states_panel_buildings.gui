@@ -596,6 +596,7 @@ types state_buildings
 				}
 			}
 		}
+
 		widget = {
 			size = { 315 40 }
 
@@ -743,79 +744,117 @@ types state_buildings
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
 
-					widget = {
-						size = { 40 10 }
-						alpha = "[TransparentIfFalse(Building.IsActive)]"
-						visible = "[And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive)]"
-						using = cash_reserves_tooltip_with_graph
+					vbox = {
+						layoutpolicy_horizontal = expanding
+						layoutpolicy_vertical = expanding
 
-						gold_progressbar_horizontal = {
-							size = { 100% 100% }
+						widget = {
+							size = { 40 8 }
+							alpha = "[TransparentIfFalse(Building.IsActive)]"
+							visible = "[And(GreaterThan_int32(Building.GetEmployeeCap, '(CFixedPoint)0'), Building.IsActive)]"
+							tooltip = "TOOLTIP_BUILDING_EMPLOYMENT"
+
+							default_progressbar_horizontal = {
+								size = { 100% 100% }
+								alpha = "[TransparentIfFalse(Building.IsActive)]"
+								visible = "[And(GreaterThan_int32(Building.GetEmployeeCap, '(CFixedPoint)0'), Building.IsActive)]"
+
+								blockoverride "glow_size" {
+									size = { 40 100% }
+								}
+
+								blockoverride "values" {
+									min = 0
+									max = "[Building.GetEmployeeCap]"
+									value = "[Building.GetNoOfEmployed]"
+								}
+							}
+						}
+
+						widget = {
+							size = { 40 8 }
 							alpha = "[TransparentIfFalse(Building.IsActive)]"
 							visible = "[And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive)]"
+							using = cash_reserves_tooltip_with_graph
 
-							blockoverride "glow_size" {
-								size = { 40 100% }
+							gold_progressbar_horizontal = {
+								size = { 100% 100% }
+								alpha = "[TransparentIfFalse(Building.IsActive)]"
+								visible = "[And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive)]"
+
+								blockoverride "glow_size" {
+									size = { 40 100% }
+								}
+
+								blockoverride "values" {
+									min = 0
+									max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
+									value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
+								}
 							}
 
-							blockoverride "values" {
-								min = 0
-								max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
-								value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
+							changed_value_decreased_progressbar_horizontal = {
+								size = { 100% 100% }
+								visible = "[GreaterThan_CFixedPoint(GetPrevTrendValue(Building.GetCashReservesTrend), GetTrendValue(Building.GetCashReservesTrend))]"
+
+								blockoverride "second_progressbar" {}
+
+								blockoverride "values" {
+									min = 0
+									max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
+									value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
+								}
+								blockoverride "glow_size" {
+									size = { 40 100% }
+								}
+								blockoverride "arrow_texture_density" {
+									texture_density = 13 #use to match height of progressbar
+								}
+							}
+
+							changed_value_increased_progressbar_horizontal = {
+								size = { 100% 100% }
+								visible = "[GreaterThan_CFixedPoint(GetTrendValue(Building.GetCashReservesTrend), GetPrevTrendValue(Building.GetCashReservesTrend))]"
+
+								blockoverride "second_progressbar" {}
+
+								blockoverride "values" {
+									min = 0
+									max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
+									value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
+								}
+								blockoverride "glow_size" {
+									size = { 40 100% }
+								}
+								blockoverride "arrow_texture_density" {
+									texture_density = 13 #use to match height of progressbar
+								}
+							}
+
+							progressbar_highlight = {
+								visible = "[GreaterThanOrEqualTo_CFixedPoint(Building.GetCurrentCashReserves, Building.GetMaxCashReserves)]"
 							}
 						}
-
-						changed_value_decreased_progressbar_horizontal = {
-							size = { 100% 100% }
-							visible = "[GreaterThan_CFixedPoint(GetPrevTrendValue(Building.GetCashReservesTrend), GetTrendValue(Building.GetCashReservesTrend))]"
-
-							blockoverride "second_progressbar" {}
-
-							blockoverride "values" {
-								min = 0
-								max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
-								value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
-							}
-							blockoverride "glow_size" {
-								size = { 40 100% }
-							}
-							blockoverride "arrow_texture_density" {
-								texture_density = 13 #use to match height of progressbar
-							}
+						widget = {
+							visible = "[Not(And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive))]"
+							size = { 40 10 }
 						}
-
-						changed_value_increased_progressbar_horizontal = {
-							size = { 100% 100% }
-							visible = "[GreaterThan_CFixedPoint(GetTrendValue(Building.GetCashReservesTrend), GetPrevTrendValue(Building.GetCashReservesTrend))]"
-
-							blockoverride "second_progressbar" {}
-
-							blockoverride "values" {
-								min = 0
-								max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
-								value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
-							}
-							blockoverride "glow_size" {
-								size = { 40 100% }
-							}
-							blockoverride "arrow_texture_density" {
-								texture_density = 13 #use to match height of progressbar
-							}
-						}
-
-						progressbar_highlight = {
-							visible = "[GreaterThanOrEqualTo_CFixedPoint(Building.GetCurrentCashReserves, Building.GetMaxCashReserves)]"
-						}
-					}
-
-					widget = {
-						visible = "[Not(And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive))]"
-						size = { 40 10 }
 					}
 				}
 
 				widget = {
 					size = { 60 40 }
+
+					### DOWNSIZE
+					button_icon_minus_action = {
+						parentanchor = left|vcenter
+						size = { 29 29 }
+						tooltip = "[Building.GetDownsizeTooltip]"
+						visible = "[IsValid( Building.Downsize )]"
+						onclick = "[Execute( Building.Downsize )]"
+						enabled = "[IsValid( Building.Downsize )]"
+						using = tooltip_below
+					}
 
 					### CANCEL CONSTRUCTION
 					button_icon_minus_action = {
